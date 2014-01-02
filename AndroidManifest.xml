@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.project.helloworld"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="18" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.project.helloworld.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.project.helloworld.AsyncTaskActivity"
+            android:label="@string/title_activity_async_task" >
+        </activity>
+        <activity
+            android:name="com.project.helloworld.FragmentTestActivity"
+            android:label="@string/title_activity_fragment_test" >
+        </activity>
+        <activity
+            android:name="com.project.helloworld.TabbedTestActivity"
+            android:label="@string/title_activity_tabbed_test" >
+        </activity>
+        <activity
+            android:name="com.project.helloworld.CameraTestActivity"
+            android:label="@string/title_activity_camera_test" >
+        </activity>
+    </application>
+
+</manifest>
