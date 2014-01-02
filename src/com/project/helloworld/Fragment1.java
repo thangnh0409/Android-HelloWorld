@@ -12,7 +12,7 @@ import android.widget.EditText;
 
 public class Fragment1 extends Fragment {
 
-	private EditText editText;
+	private EditText editText; //edit text for show textchanges
 	
 	 ToolbarListener activityCallback;
 		
