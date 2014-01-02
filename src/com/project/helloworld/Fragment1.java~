@@ -30,8 +30,6 @@ public class Fragment1 extends Fragment {
                     + " must implement ToolbarListener");
         }
 	}
-
-	// override method int fragment
 	@Override
 	public View onCreateView(LayoutInflater inflater,
 			ViewGroup container, Bundle savedInstanceState){
