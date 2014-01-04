@@ -37,7 +37,9 @@ public class CameraTestActivity extends Activity {
 	public void onTakePhotoClick(View v){
 		Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
 		deletePhoto();
-		intent.putExtra(MediaStore.EXTRA_OUTPUT, getPhotoUri());
+		//System.out.println(getPhotoUri().toString());
+		Uri uriSavedImage=Uri.fromFile(new File("/sdcard/tmp.jpg"));
+		intent.putExtra(MediaStore.EXTRA_OUTPUT, uriSavedImage);
 		startActivityForResult(intent, 0);
 	}
 	public Uri getPhotoUri(){
@@ -49,6 +51,8 @@ public class CameraTestActivity extends Activity {
 			}
 		
 			Uri temPhotoUri = Uri.fromFile(tempPhoto);
+		
+			
 			return temPhotoUri;
 		}
 		catch (IOException e){
