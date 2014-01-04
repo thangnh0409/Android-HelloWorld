@@ -1,9 +1,17 @@
 package com.project.helloworld;
 
+import java.io.File;
+import java.io.IOException;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,6 +19,7 @@ import android.widget.ImageView;
 public class CameraTestActivity extends Activity {
 
 	ImageView imageView;
+	public final String TAG = "Camera";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,15 +36,47 @@ public class CameraTestActivity extends Activity {
 	}
 	public void onTakePhotoClick(View v){
 		Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+		deletePhoto();
+		intent.putExtra(MediaStore.EXTRA_OUTPUT, getPhotoUri());
 		startActivityForResult(intent, 0);
+	}
+	public Uri getPhotoUri(){
+		File rootFolder = Environment.getExternalStorageDirectory();
+		File tempPhoto = new File(rootFolder.getAbsolutePath()+ "tmp.jpg");
+		try{
+			if(!tempPhoto.exists()){
+				tempPhoto.createNewFile();
+			}
+		
+			Uri temPhotoUri = Uri.fromFile(tempPhoto);
+			return temPhotoUri;
+		}
+		catch (IOException e){
+		e.printStackTrace();
+		return Uri.EMPTY;
+		}
+	}
+	public void deletePhoto(){
+		File rootFolder = Environment.getExternalStorageDirectory();
+		File tempPhoto = new File(rootFolder.getAbsolutePath()+ "tmp.jpg");
+		if(tempPhoto.exists()){
+			tempPhoto.delete();
+		}
 	}
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-	      // TODO Auto-generated method stub
+	      if(resultCode == RESULT_CANCELED) return;
+	    /*  
 	      super.onActivityResult(requestCode, resultCode, data);
 	      Bitmap bp = (Bitmap) data.getExtras().get("data");
 	      imageView.setImageBitmap(bp);
+	      */
+	      String imgPath = Environment.getExternalStorageDirectory() + File.separator + "tmp.jpg";
+	      Log.v(TAG, imgPath);
+	      Bitmap bmp = BitmapFactory.decodeFile(imgPath);
+	      imageView.setImageBitmap(bmp);
+	      
 	   }
 	
 }
