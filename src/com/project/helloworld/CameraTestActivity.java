@@ -19,7 +19,7 @@ import android.widget.ImageView;
 public class CameraTestActivity extends Activity {
 
 	ImageView imageView;
-	public final String TAG = "Camera";
+	public final String TAG = "CameraLog";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +40,17 @@ public class CameraTestActivity extends Activity {
 		//System.out.println(getPhotoUri().toString());
 		Uri uriSavedImage=Uri.fromFile(new File("/sdcard/tmp.jpg"));
 		intent.putExtra(MediaStore.EXTRA_OUTPUT, uriSavedImage);
-		startActivityForResult(intent, 0);
+		if (intent.resolveActivity(getPackageManager())!= null){
+			startActivityForResult(intent, 0);
+		}
+		
 	}
 	public Uri getPhotoUri(){
+		
 		File rootFolder = Environment.getExternalStorageDirectory();
 		File tempPhoto = new File(rootFolder.getAbsolutePath()+ "tmp.jpg");
+		Log.i("Photo URL", tempPhoto.getAbsolutePath());
+		
 		try{
 			if(!tempPhoto.exists()){
 				tempPhoto.createNewFile();
@@ -77,7 +83,7 @@ public class CameraTestActivity extends Activity {
 	      imageView.setImageBitmap(bp);
 	      */
 	      String imgPath = Environment.getExternalStorageDirectory() + File.separator + "tmp.jpg";
-	      Log.v(TAG, imgPath);
+	      Log.i(TAG, imgPath);
 	      Bitmap bmp = BitmapFactory.decodeFile(imgPath);
 	      imageView.setImageBitmap(bmp);
 	      

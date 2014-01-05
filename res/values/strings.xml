@@ -10,5 +10,6 @@
     <string name="title_activity_fragment_test">FragmentTestActivity</string>
     <string name="title_activity_tabbed_test">TabbedTestActivity</string>
     <string name="title_activity_camera_test">CameraTestActivity</string>
+    <string name="title_activity_camera_test_using_api">CameraTestUsingAPIActivity</string>
 
 </resources>
