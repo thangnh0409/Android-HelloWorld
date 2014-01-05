@@ -21,7 +21,7 @@ public class MainActivity extends Activity {
 	// array save menu item
 	static final String[] menuItem = new String[]{"Fragment Test", "Save data Test", "Dialog Test",
 		"AsyncTask Test", "Tabview Test", "Take Photo"};
-	
+	// no comment
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
